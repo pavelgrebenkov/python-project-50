@@ -11,6 +11,11 @@ install:
 	uv sync
 
 
+# Lint => code quality
+lint:
+	uv run ruff check gendiff
+
+
 # Package => building/distributing/installing/uninstalling/listing
 package-build:
 	uv build
