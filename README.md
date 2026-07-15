@@ -41,3 +41,12 @@ A command-line tool that compares two structured configuration files and reports
 - Stylish (default): A tree-like text using indentation and prefixes (+ for added, - for removed, space for unchanged). Shows the full nested structure for context. Keys are sorted alphabetically for stable output.
 - Plain: A flat list of sentences in English (e.g., "Property 'key' was added with value: ..."). Only show keys that have changed (no unchanged lines). Use dot notation for nested paths (e.g., "group1.baz").
 - JSON: A structured JSON array of difference objects, each containing at least type, key (or path), old value (if applicable), and new value (if applicable). Machine-readable.
+
+
+<!--
+### Video demonstrations:
+To see how to install and uninstall the application, and how to use its various features, watch the demo videos below.
+
+[Installation/Uninstallation (with pipx)](https://asciinema.org/a/820009" target="_blank")
+- [Parsing flat JSON files](https://asciinema.org/a/820012" target="_blank")
+-->
