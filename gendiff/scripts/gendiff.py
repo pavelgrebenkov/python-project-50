@@ -1,9 +1,26 @@
+"""
+Gendiff Entry Point Module.
+This module provides a command-line interface (CLI) to compare two configuration
+files and output the differences in various formats.
+"""
+
 import argparse
 
 from gendiff.diff_logic import generate_diff
 
 
 def main():
+	"""
+	Execute the core command-line application.
+
+	Parses command-line arguments for two configuration files, calculates
+	their difference using gendiff's logic, and prints the result to stdout.
+
+	Command-line Arguments:
+		first_file (str): Path to the first configuration file.
+		second_file (str): Path to the second configuration file.
+		-f, --format (str): The output format (default is 'stylish').
+	"""
 	parser = argparse.ArgumentParser(prog="gendiff", description="Compares two configuration files and shows a difference.")
 
 	parser.add_argument("first_file")
