@@ -1,4 +1,4 @@
-.PHONY: gendiff install package-build package-install package-reinstall package-uninstall
+.PHONY: gendiff install lint test test package-build package-install package-reinstall package-uninstall
 
 
 # Test => only for testing CLI entry point (displays help information for the utility)
@@ -10,10 +10,24 @@ gendiff:
 install:
 	uv sync
 
+upgrade:
+	uv sync --upgrade
+
 
 # Lint => code quality
 lint:
 	uv run ruff check gendiff
+
+lint-fix:
+	uv run ruff check --fix gendiff
+
+
+# Pytest => code functionality
+test:
+	uv run pytest -vv
+
+test-coverage:
+	uv run pytest --cov=gendiff --cov-report xml
 
 
 # Package => building/distributing/installing/uninstalling/listing
