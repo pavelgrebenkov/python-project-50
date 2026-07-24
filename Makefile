@@ -1,4 +1,4 @@
-.PHONY: gendiff install lint test test package-build package-install package-reinstall package-uninstall
+.PHONY: gendiff install update lint test test test-coverage package-build package-install package-reinstall package-uninstall
 
 
 # Test => only for testing CLI entry point (displays help information for the utility)
@@ -10,7 +10,7 @@ gendiff:
 install:
 	uv sync
 
-upgrade:
+update:
 	uv sync --upgrade
 
 
