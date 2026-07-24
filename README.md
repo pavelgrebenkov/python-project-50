@@ -1,9 +1,14 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/pavelgrebenkov/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/pavelgrebenkov/python-project-50/actions)
 
-### Qlty & SonarQube - maintainability rating
-[![Qlty check](https://qlty.sh/gh/pavelgrebenkov/projects/python-project-50/maintainability.svg)](https://qlty.sh/gh/pavelgrebenkov/projects/python-project-50)
+### Github Actions CI
+[![Github Actions Status](https://github.com/pavelgrebenkov/python-project-50/workflows/Python%20CI/badge.svg)](https://github.com/pavelgrebenkov/python-project-50/actions)
+
+### SonarQube - maintainability rating
 [![SonarQube check](https://sonarcloud.io/api/project_badges/measure?project=pavelgrebenkov_python-project-50&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=pavelgrebenkov_python-project-50)
+
+### SonarQube - test coverage
+[![SonarQube coverage](https://sonarcloud.io/api/project_badges/measure?project=pavelgrebenkov_python-project-50&metric=coverage)](https://sonarcloud.io/summary/new_code?id=pavelgrebenkov_python-project-50)
 
 ### Description:
 This package was built as a requirement for the second academic module of the professional program, <em>Python Developer</em>, offered by <a href="https://ru.hexlet.io/" >Hexlet</a>, an online programming school.
