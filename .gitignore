@@ -10,5 +10,6 @@ build/
 .coverage
 coverage.xml
 *.log
-.nano
+*.nano
+*.swp
 
