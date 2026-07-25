@@ -14,25 +14,6 @@ dev = [
     "ruff>=0.15.20",
 ]
 
-[tool.sonar]
-# Required metadata
-projectKey="pavelgrebenkov_python-project-50"
-organization="pavelgrebenkov"
-projectName="python-project-50"
-projectVersion="1.0.0"
-
-# Paths to scan
-sources="gendiff"
-tests="tests"
-
-# Crucial exclusions (millions of lines of dependency code not needed)
-exclusions="**/.venv/**,**/__pycache__/**,**/*.pyc"
-
-# Python specifics & Coverage maps
-python.version="3.14"
-python.coverage.reportPaths="coverage.xml"
-sourceEncoding="UTF-8"
-
 [project.scripts]
 gendiff = "gendiff.scripts.gendiff:main"
 
