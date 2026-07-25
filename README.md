@@ -1,4 +1,4 @@
-### Hexlet check:
+### Hexlet check
 [![hexlet-check](https://github.com/pavelgrebenkov/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/pavelgrebenkov/python-project-50/actions/workflows/hexlet-check.yml)
 
 ### Github Actions CI
