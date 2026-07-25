@@ -10,7 +10,7 @@ jobs:
     steps:
        # Pull down the repository source code securly using v6
       - name: Checkout Code
-      - uses: actions/checkout@v6
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0 # Important for Git blame history in SonarQube
        # Spin up the target Python environment using v6
@@ -40,7 +40,7 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secretes.SONAR_HOST_URL }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           args: >
             -Dsonar.projectKey=hexlet-boilerplates_python-package
