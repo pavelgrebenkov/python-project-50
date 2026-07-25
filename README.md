@@ -1,14 +1,14 @@
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/pavelgrebenkov/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/pavelgrebenkov/python-project-50/actions)
+### Hexlet check:
+[![hexlet-check](https://github.com/pavelgrebenkov/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/pavelgrebenkov/python-project-50/actions/workflows/hexlet-check.yml)
 
 ### Github Actions CI
-[![Github Actions Status](https://github.com/pavelgrebenkov/python-project-50/actions/workflows/Python%20CI/badge.svg)](https://github.com/pavelgrebenkov/python-project-50/actions)
+[![.github/workflows/python-check.yml](https://github.com/pavelgrebenkov/python-project-50/actions/workflows/python-check.yml/badge.svg)](https://github.com/pavelgrebenkov/python-project-50/actions/workflows/python-check.yml)
 
 ### SonarQube - maintainability rating
-[![SonarQube check](https://sonarcloud.io/api/project_badges/measure?project=pavelgrebenkov_python-project-50&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=pavelgrebenkov_python-project-50)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=pavelgrebenkov_python-project-50&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=pavelgrebenkov_python-project-50)
 
 ### SonarQube - test coverage
-[![SonarQube coverage](https://sonarcloud.io/api/project_badges/measure?project=pavelgrebenkov_python-project-50&metric=coverage)](https://sonarcloud.io/summary/new_code?id=pavelgrebenkov_python-project-50)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=pavelgrebenkov_python-project-50&metric=coverage)](https://sonarcloud.io/summary/new_code?id=pavelgrebenkov_python-project-50)
 
 ### Description:
 This package was built as a requirement for the second academic module of the professional program, <em>Python Developer</em>, offered by <a href="https://ru.hexlet.io/" >Hexlet</a>, an online programming school.
