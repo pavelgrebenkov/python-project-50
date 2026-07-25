@@ -13,9 +13,9 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0 # Important for Git blame history in SonarQube
-       # Spin up the target Python environment using v6
+       # Spin up the target Python environment using v7
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12 - 3.14"
         # Use uv for managing dependencies
@@ -35,9 +35,9 @@ jobs:
       - name: Run pytest test coverage
         run: |
           make test-coverage
-        # SonarQube scanner
+        # SonarQube scanner using v8
       - name: Run SonarQubeScan
-        uses: SonarSource/sonarqube-scan-action@v6
+        uses: SonarSource/sonarqube-scan-action@v8
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
