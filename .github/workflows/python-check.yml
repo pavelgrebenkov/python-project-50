@@ -41,7 +41,6 @@ jobs:
         with:
           skipSignatureVerification: true
           args: >
-            -X
             -Dsonar.verbose=${{ runner.debug == '1' && 'true' || 'false' }}"
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
