@@ -1,3 +1,13 @@
+""" Difference generator module for compring configuration files.
+
+This module contains the function that compares two structured
+configuration files and reports their differences in a user-selected
+format.
+
+It also contains helper functions used by the main difference function.
+"""
+
+
 import json
 from typing import Any
 
