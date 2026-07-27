@@ -1,3 +1,21 @@
+"""Unit tests for the Difference Generator module (diff_logic.py).
+
+This module validates generate_diff(), which compares two structured
+configuration files and reports their differences in a user-selected format.
+
+The tests are both granular and global. The granular tests include four cases:
+Case 1: Both input files are identical;
+Case 2: New information is added to the second file;
+Case 3: Information is removed from the second file;
+Case 4: Information is updated in the second file.
+
+The global test function tests all of the above cases combined.
+
+pytest-mock API:
+	mocker: Mock the inputs to the  _read_file() helper function,
+	which is used inside generate_diff()
+"""
+
 from gendiff.diff_logic import generate_diff
 from pathlib import Path
 
