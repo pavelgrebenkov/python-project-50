@@ -10,20 +10,7 @@ It also contains helper functions used by the main difference function.
 
 import json
 from typing import Any
-
-
-def _read_file(file_path: str) -> dict:
-	"""
-	Read a JSON file and return its parsed contents as a Python object.
-
-	Args:
-		file_path (str): The path to the JSON file to be read.
-	Returns:
-		Python object (dict): The parsed JSON data.
-	"""
-	with open(file_path) as f:
-		return json.load(f)
-
+from .parser import read_file
 
 def _get_sorted_keys(dict1: dict, dict2: dict) -> list:
 	"""
