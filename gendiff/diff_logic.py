@@ -8,9 +8,10 @@ It also contains helper functions used by the main difference function.
 """
 
 
-import json
 from typing import Any
-from .parser import read_file
+
+from gendiff.parser import read_file
+
 
 def _get_sorted_keys(dict1: dict, dict2: dict) -> list:
 	"""
@@ -60,8 +61,8 @@ def generate_diff(file1_path: str, file2_path: str) -> str:
 		tree-like output (str): Changes are indicated with - (removed), + (added), and empty space (unchanged).
 
 	"""
-	dict1 = _read_file(file1_path)
-	dict2 = _read_file(file2_path)
+	dict1 = read_file(file1_path)
+	dict2 = read_file(file2_path)
 
 	sorted_keys = _get_sorted_keys(dict1, dict2)
 
