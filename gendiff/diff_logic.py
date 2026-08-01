@@ -10,7 +10,7 @@ It also contains helper functions used by the main difference function.
 
 from typing import Any
 
-from gendiff.parser import read_file
+from .parser import read_file
 
 
 def _get_sorted_keys(dict1: dict, dict2: dict) -> list:
