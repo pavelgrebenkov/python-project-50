@@ -37,7 +37,7 @@ def test_generate_diff_unchanged_key(mocker: MockerFixture) -> None:
 	file2 = {"host": "hexlet.io"}
 	expected_output = "{\n    host: hexlet.io\n}"
 
-	mock_read = mocker.patch("gendiff.diff_logic._read_file")
+	mock_read = mocker.patch("gendiff.diff_logic.read_file")
 	mock_read.side_effect = [file1, file2]
 
         # Act
@@ -54,7 +54,7 @@ def test_generate_diff_add_key(mocker: MockerFixture) -> None:
 	file2 = {"host": "hexlet.io"}
 	expected_output = "{\n  + host: hexlet.io\n}"
 
-	mock_read = mocker.patch("gendiff.diff_logic._read_file")
+	mock_read = mocker.patch("gendiff.diff_logic.read_file")
 	mock_read.side_effect = [file1, file2]
 
 	# Act
@@ -71,7 +71,7 @@ def test_generate_diff_remove_key(mocker: MockerFixture) -> None:
 	file2 = {}
 	expected_output = "{\n  - host: hexlet.io\n}"
 
-	mock_read = mocker.patch("gendiff.diff_logic._read_file")
+	mock_read = mocker.patch("gendiff.diff_logic.read_file")
 	mock_read.side_effect = [file1, file2]
 
 	# Act
@@ -88,7 +88,7 @@ def test_generate_diff_update_key(mocker: MockerFixture) -> None:
 	file2 = {"host": "hexlet.com"}
 	expected_output = "{\n  - host: hexlet.io\n  + host: hexlet.com\n}"
 
-	mock_read = mocker.patch("gendiff.diff_logic._read_file")
+	mock_read = mocker.patch("gendiff.diff_logic.read_file")
 	mock_read.side_effect = [file1, file2]
 
 	# Act
