@@ -1,14 +1,14 @@
 """Unit tests for the Parser Module (parser.py).
 
-This module validates read_file(), which detects files of .json or .yml / .yaml type, reads them and 
+This module validates read_file(), which detects files of .json or .yml / .yaml type, reads them and
 parses them into Python dictionaries. It also raises a ValueError if an unsupported file format is
 passed to the function.
 
 The tests cover four cases:
 Case 1: The functionn correctly detects a .json file, reads and parses it into a Python dictionary;
 Case 2: The function correctly detects a .yml file, reads and parses it into a Python dictionary;
-Case 2: The function correctly detects a .yaml file, reads and parses it into a Python dictionary;
-Case 3: The function raises a ValueError in case of an unsupported file format.
+Case 3: The function correctly detects a .yaml file, reads and parses it into a Python dictionary;
+Case 4: The function raises a ValueError in case of an unsupported file format.
 """
 
 from gendiff.parser import read_file
