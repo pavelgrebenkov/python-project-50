@@ -1,0 +1,2 @@
+This is a test file.
+It is used to validate that read_file() in gendiff/parser.py can successfully handle unsupported file formats.
