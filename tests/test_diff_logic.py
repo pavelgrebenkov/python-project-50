@@ -20,18 +20,12 @@ pytest-mock API:
 	used inside generate_diff().
 """
 
+
 from gendiff.diff_logic import generate_diff
-from pathlib import Path
 from pytest_mock import MockerFixture
+from pathlib import Path
+from .helpers import _get_test_data_path, _read_test_file
 
-
-def _get_test_data_path(filename: str) -> Path:
-	path = Path(__file__).parent / "test_data" / filename
-	return path
-
-
-def _read_test_file(filename: str) -> str:
-	return _get_test_data_path(filename).read_text().strip()
 
 # UNIT TESTS
 # Case 1: Both files identical → output shows keys without - or +.
@@ -159,4 +153,3 @@ def test_generate_diff_unsupported_ext() -> None:
 	# Assert
 	assert "Comparison failed" in actual_output
 	assert expected_output == actual_output
-

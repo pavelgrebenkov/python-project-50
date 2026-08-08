@@ -11,19 +11,12 @@ Case 3: The function correctly detects a .yaml file, reads and parses it into a 
 Case 4: The function raises a ValueError in case of an unsupported file format.
 """
 
+
 from gendiff.parser import read_file
 from pathlib import Path
+from .helpers import _get_test_data_path, _read_test_file
 import pytest
 import ast
-
-
-def _get_test_data_path(filename: str) -> Path:
-	path = Path(__file__).parent / "test_data" / filename
-	return path
-
-
-def _read_test_file(filename: str)-> str:
-    return _get_test_data_path(filename).read_text().strip()
 
 
 # Case 1: .json files
