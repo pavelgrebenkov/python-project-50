@@ -1,5 +1,4 @@
-"""
-Gendiff Entry Point Module.
+"""Gendiff Entry Point Module.
 
 This module provides a command-line interface (CLI) to compare two configuration
 files and output the differences in various formats.
