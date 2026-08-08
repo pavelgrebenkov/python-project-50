@@ -1,19 +1,23 @@
-"""Unit tests for the Difference Generator module (diff_logic.py).
+"""Unit and integrated tests for the Difference Generator Module (diff_logic.py).
 
 This module validates generate_diff(), which compares two structured
 configuration files and reports their differences in a user-selected format.
 
-The tests are both granular and global. The granular tests include four cases:
+The granular tests cover four cases:
 Case 1: Both input files are identical;
 Case 2: New information is added to the second file;
 Case 3: Information is removed from the second file;
 Case 4: Information is updated in the second file.
 
-The global test function tests all of the above cases combined.
+The integrated tests cover three cases:
+Case 1: Comparing two .json files;
+Case 2: Comparing two .yml files;
+Case 3: Comparing two .yaml files;
+Case 4: Comparing one supported file format and one unsupported file format.
 
 pytest-mock API:
-	mocker: Mock the inputs to the  _read_file() helper function,
-	which is used inside generate_diff()
+	mocker: Mock the inputs to the helper function, read_file(),
+	used inside generate_diff().
 """
 
 from gendiff.diff_logic import generate_diff
@@ -29,7 +33,7 @@ def _get_test_data_path(filename: str) -> Path:
 def _read_test_file(filename: str) -> str:
 	return _get_test_data_path(filename).read_text().strip()
 
-
+# UNIT TESTS
 # Case 1: Both files identical → output shows keys without - or +.
 def test_generate_diff_unchanged_key(mocker: MockerFixture) -> None:
 	# Arrange
@@ -98,8 +102,9 @@ def test_generate_diff_update_key(mocker: MockerFixture) -> None:
 	assert actual_output == expected_output
 
 
-# Case 5: Mixed changes (all of the above combined)
-def test_generate_diff_overall() -> None:
+# INTEGRATED TESTS
+# Case 1: Comparing two .json files
+def test_generate_diff_json() -> None:
 	# Arrange
 	file1 = _get_test_data_path("file1.json")
 	file2 = _get_test_data_path("file2.json")
@@ -110,3 +115,48 @@ def test_generate_diff_overall() -> None:
 
 	# Assert
 	assert actual_output == expected_output
+
+
+# Case 2: Comparing two .yml files
+def test_generate_diff_yml() -> None:
+	# Arrange
+	file1 = _get_test_data_path("file1.yml")
+	file2 = _get_test_data_path("file2.yml")
+	expected_output = _read_test_file("expected_stylish.txt")
+
+	# Act
+	actual_output = generate_diff(file1, file2)
+
+	# Assert
+	assert actual_output == expected_output
+
+
+# Case 3: Comparing two .yaml files
+def test_generate_diff_yaml() -> None:
+	# Arrange
+	file1 = _get_test_data_path("file1.yaml")
+	file2 = _get_test_data_path("file2.yaml")
+	expected_output = _read_test_file("expected_stylish.txt")
+
+	# Act
+	actual_output = generate_diff(file1, file2)
+
+	# Assert
+	assert actual_output == expected_output
+
+
+# Case 4: Comparing one supported file format and one unsupported file format
+def test_generate_diff_unsupported_ext() -> None:
+	# Arrange
+	file1 = _get_test_data_path("file1.json")
+	file2 = _get_test_data_path("unsupported_file_type.txt")
+	file_ext = Path(file2).suffix.lower()
+	expected_output = f"Comparison failed: Unsupported file format {file_ext}. Only JSON and YAML allowed."
+
+	# Act
+	actual_output = generate_diff(file1, file2)
+
+	# Assert
+	assert "Comparison failed" in actual_output
+	assert expected_output == actual_output
+
