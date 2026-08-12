@@ -61,31 +61,27 @@ def generate_diff(file_path_1: str, file_path_2: str) -> str:
 		tree-like output (str): Changes are indicated with - (removed), + (added), and "  " (unchanged).
 
 	"""
-	try:
-		dict1 = read_file(file_path_1)
-		dict2 = read_file(file_path_2)
 
-		sorted_keys = _get_sorted_keys(dict1, dict2)
+	dict1 = read_file(file_path_1)
+	dict2 = read_file(file_path_2)
 
-		output_str = ""
+	sorted_keys = _get_sorted_keys(dict1, dict2)
 
-		for key in sorted_keys:
+	output_str = ""
 
-			value1 = dict1.get(key)
-			value2 = dict2.get(key)
+	for key in sorted_keys:
 
-			if key in dict1 and key in dict2:
-				if dict1.get(key) != dict2.get(key):
-					output_str += f"  - {key}: {_format_value(value1)}\n  + {key}: {_format_value(value2)}\n"
-				else:
-					output_str += f"    {key}: {_format_value(value1)}\n"
-			elif key in dict1:
-				output_str += f"  - {key}: {_format_value(value1)}\n"
-			elif key in dict2:
-				output_str += f"  + {key}: {_format_value(value2)}\n"
+		value1 = dict1.get(key)
+		value2 = dict2.get(key)
 
-		return f"{{\n{output_str}}}"
+		if key in dict1 and key in dict2:
+			if dict1.get(key) != dict2.get(key):
+				output_str += f"  - {key}: {_format_value(value1)}\n  + {key}: {_format_value(value2)}\n"
+			else:
+				output_str += f"    {key}: {_format_value(value1)}\n"
+		elif key in dict1:
+			output_str += f"  - {key}: {_format_value(value1)}\n"
+		elif key in dict2:
+			output_str += f"  + {key}: {_format_value(value2)}\n"
 
-	except ValueError as error:
-		# The ValueError from _read_file() propogates here
-		return f"Comparison failed: {error}"
+	return f"{{\n{output_str}}}"
