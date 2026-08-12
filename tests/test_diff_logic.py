@@ -3,7 +3,7 @@
 This module validates generate_diff(), which compares two structured
 configuration files and reports their differences in a user-selected format.
 
-The granular tests cover four cases:
+The unit tests cover four cases:
 Case 1: Both input files are identical;
 Case 2: New information is added to the second file;
 Case 3: Information is removed from the second file;
@@ -20,7 +20,7 @@ pytest-mock API:
 	used inside generate_diff().
 """
 
-
+import pytest
 from gendiff.diff_logic import generate_diff
 from pytest_mock import MockerFixture
 from pathlib import Path
@@ -144,12 +144,7 @@ def test_generate_diff_unsupported_ext() -> None:
 	# Arrange
 	file1 = _get_test_data_path("file1.json")
 	file2 = _get_test_data_path("unsupported_file_type.txt")
-	file_ext = Path(file2).suffix.lower()
-	expected_output = f"Comparison failed: Unsupported file format {file_ext}. Only JSON and YAML allowed."
 
-	# Act
-	actual_output = generate_diff(file1, file2)
-
-	# Assert
-	assert "Comparison failed" in actual_output
-	assert expected_output == actual_output
+	# Act & Assert
+	with pytest.raises(ValueError, match="Unsupported file format"):
+		generate_diff(file1, file2)
