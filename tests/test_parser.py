@@ -22,7 +22,7 @@ import ast
 # Case 1: .json files
 def test_read_file_json():
 	# Arrange
-	json_input_file = _get_test_data_path("file1.json")
+	json_input_file = _get_test_data_path("file1_flat.json")
 	expected_output_file = _get_test_data_path("expected_dict_output.txt")
 	expected_output = ast.literal_eval(_read_test_file(expected_output_file))
 
@@ -36,7 +36,7 @@ def test_read_file_json():
 # Case 2: .yml files
 def test_read_file_yml():
 	# Arrange
-	yml_input_file = _get_test_data_path("file1.yml")
+	yml_input_file = _get_test_data_path("file1_flat.yml")
 	expected_output_file = _get_test_data_path("expected_dict_output.txt")
 	expected_output = ast.literal_eval(_read_test_file(expected_output_file))
 
@@ -50,7 +50,7 @@ def test_read_file_yml():
 # Case 3: .yaml files
 def test_read_file_yaml():
 	# Arrange
-	yaml_input_file = _get_test_data_path("file1.yaml")
+	yaml_input_file = _get_test_data_path("file1_flat.yaml")
 	expected_output_file = _get_test_data_path("expected_dict_output.txt")
 	expected_output = ast.literal_eval(_read_test_file(expected_output_file))
 
