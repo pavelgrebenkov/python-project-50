@@ -102,7 +102,7 @@ def test_generate_diff_json() -> None:
 	# Arrange
 	file1 = _get_test_data_path("file1_flat.json")
 	file2 = _get_test_data_path("file2_flat.json")
-	expected_output = _read_test_file("expected_stylish.txt")
+	expected_output = _read_test_file("expected_stylish_flat.txt")
 
 	# Act
 	actual_output = generate_diff(file1, file2)
@@ -116,7 +116,7 @@ def test_generate_diff_yml() -> None:
 	# Arrange
 	file1 = _get_test_data_path("file1_flat.yml")
 	file2 = _get_test_data_path("file2_flat.yml")
-	expected_output = _read_test_file("expected_stylish.txt")
+	expected_output = _read_test_file("expected_stylish_flat.txt")
 
 	# Act
 	actual_output = generate_diff(file1, file2)
@@ -130,7 +130,7 @@ def test_generate_diff_yaml() -> None:
 	# Arrange
 	file1 = _get_test_data_path("file1_flat.yaml")
 	file2 = _get_test_data_path("file2_flat.yaml")
-	expected_output = _read_test_file("expected_stylish.txt")
+	expected_output = _read_test_file("expected_stylish_flat.txt")
 
 	# Act
 	actual_output = generate_diff(file1, file2)
