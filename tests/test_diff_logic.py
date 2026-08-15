@@ -100,8 +100,8 @@ def test_generate_diff_update_key(mocker: MockerFixture) -> None:
 # Case 1: Comparing two .json files
 def test_generate_diff_json() -> None:
 	# Arrange
-	file1 = _get_test_data_path("file1.json")
-	file2 = _get_test_data_path("file2.json")
+	file1 = _get_test_data_path("file1_flat.json")
+	file2 = _get_test_data_path("file2_flat.json")
 	expected_output = _read_test_file("expected_stylish.txt")
 
 	# Act
@@ -114,8 +114,8 @@ def test_generate_diff_json() -> None:
 # Case 2: Comparing two .yml files
 def test_generate_diff_yml() -> None:
 	# Arrange
-	file1 = _get_test_data_path("file1.yml")
-	file2 = _get_test_data_path("file2.yml")
+	file1 = _get_test_data_path("file1_flat.yml")
+	file2 = _get_test_data_path("file2_flat.yml")
 	expected_output = _read_test_file("expected_stylish.txt")
 
 	# Act
@@ -128,8 +128,8 @@ def test_generate_diff_yml() -> None:
 # Case 3: Comparing two .yaml files
 def test_generate_diff_yaml() -> None:
 	# Arrange
-	file1 = _get_test_data_path("file1.yaml")
-	file2 = _get_test_data_path("file2.yaml")
+	file1 = _get_test_data_path("file1_flat.yaml")
+	file2 = _get_test_data_path("file2_flat.yaml")
 	expected_output = _read_test_file("expected_stylish.txt")
 
 	# Act
@@ -142,7 +142,7 @@ def test_generate_diff_yaml() -> None:
 # Case 4: Comparing one supported file format and one unsupported file format
 def test_generate_diff_unsupported_ext() -> None:
 	# Arrange
-	file1 = _get_test_data_path("file1.json")
+	file1 = _get_test_data_path("file1_flat.json")
 	file2 = _get_test_data_path("unsupported_file_type.txt")
 
 	# Act & Assert
