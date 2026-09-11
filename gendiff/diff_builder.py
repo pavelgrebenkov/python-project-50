@@ -25,6 +25,16 @@ def _get_sorted_keys(dict1: dict, dict2: dict) -> list:
 
 
 def build_diff(dict1: dict, dict2: dict) -> list:
+	"""
+	Compare two dictionaries and return a list of dictionaries, where each dictionary is a node in a diff tree.
+
+	Args:
+		dict1: dictionary 1
+		dict2: dictionary 2
+
+	Returns:
+		list_of_nodes: an internal representation (IR) of the differences between dict1 and dict2 
+	"""
 
 	sorted_keys = _get_sorted_keys(dict1, dict2)
 
