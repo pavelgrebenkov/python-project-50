@@ -26,7 +26,7 @@ import ast
 def test_read_file_flat_json():
 	# Arrange
 	json_input_file = _get_test_data_path("file1_flat.json")
-	expected_output_file = _get_test_data_path("expected_dict_output_flat.txt")
+	expected_output_file = _get_test_data_path("expected_dict_output_flat1.txt")
 	expected_output = ast.literal_eval(_read_test_file(expected_output_file))
 
 	# Act
@@ -40,7 +40,7 @@ def test_read_file_flat_json():
 def test_read_file_nest_json():
 	# Arrange
 	json_input_file = _get_test_data_path("file1_nest.json")
-	expected_output_file = _get_test_data_path("expected_dict_output_nest.txt")
+	expected_output_file = _get_test_data_path("expected_dict_output_nest1.txt")
 	expected_output = ast.literal_eval(_read_test_file(expected_output_file))
 
 	# Act
@@ -54,7 +54,7 @@ def test_read_file_nest_json():
 def test_read_file_flat_yml():
 	# Arrange
 	yml_input_file = _get_test_data_path("file1_flat.yml")
-	expected_output_file = _get_test_data_path("expected_dict_output_flat.txt")
+	expected_output_file = _get_test_data_path("expected_dict_output_flat1.txt")
 	expected_output = ast.literal_eval(_read_test_file(expected_output_file))
 
 	# Act
@@ -68,7 +68,7 @@ def test_read_file_flat_yml():
 def test_read_file_nest_yml():
 	# Arrange
 	yml_input_file = _get_test_data_path("file1_nest.yml")
-	expected_output_file = _get_test_data_path("expected_dict_output_nest.txt")
+	expected_output_file = _get_test_data_path("expected_dict_output_nest1.txt")
 	expected_output = ast.literal_eval(_read_test_file(expected_output_file))
 
 	# Act
@@ -82,7 +82,7 @@ def test_read_file_nest_yml():
 def test_read_file_flat_yaml():
 	# Arrange
 	yaml_input_file = _get_test_data_path("file1_flat.yaml")
-	expected_output_file = _get_test_data_path("expected_dict_output_flat.txt")
+	expected_output_file = _get_test_data_path("expected_dict_output_flat1.txt")
 	expected_output = ast.literal_eval(_read_test_file(expected_output_file))
 
 	# Act
@@ -96,7 +96,7 @@ def test_read_file_flat_yaml():
 def test_read_file_nest_yaml():
 	# Arrange
 	yaml_input_file = _get_test_data_path("file1_nest.yaml")
-	expected_output_file = _get_test_data_path("expected_dict_output_nest.txt")
+	expected_output_file = _get_test_data_path("expected_dict_output_nest1.txt")
 	expected_output = ast.literal_eval(_read_test_file(expected_output_file))
 
 	# Act
