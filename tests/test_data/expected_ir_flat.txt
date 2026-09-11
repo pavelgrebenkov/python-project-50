@@ -1,0 +1,7 @@
+[
+    {'key': 'follow', 'status': 'removed', 'old_value': False, 'new_value': None, 'children': None},
+    {'key': 'host', 'status': 'unchanged', 'old_value': 'hexlet.io', 'new_value': 'hexlet.io', 'children': None},
+    {'key': 'proxy', 'status': 'removed', 'old_value': '123.234.53.22', 'new_value': None, 'children': None},
+    {'key': 'timeout', 'status': 'updated', 'old_value': 50, 'new_value': 20, 'children': None},
+    {'key': 'verbose', 'status': 'added', 'old_value': None, 'new_value': True, 'children': None}
+]
