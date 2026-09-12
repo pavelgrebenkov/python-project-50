@@ -1,104 +1,35 @@
-"""Unit and integrated tests for the Difference Generator Module (diff_logic.py).
+"""Integrated tests for the Difference Generator Module (diff_logic.py).
 
 This module validates generate_diff(), which compares two structured
 configuration files and reports their differences in a user-selected format.
 
-The unit tests cover four cases:
-Case 1: Both input files are identical;
-Case 2: New information is added to the second file;
-Case 3: Information is removed from the second file;
-Case 4: Information is updated in the second file.
+The integrated tests cover 7 cases:
+Case 1: Comparing two flat .json files;
+Case 2: Comparing two nested .json files;
+Case 3: Comparing two flat .yml files;
+Case 4: Comparing two nested .yml files;
+Case 5: Comparing two flat .yaml files;
+Case 6: Comparing two nested .yaml files;
+Case 7: Comparing one supported file format and one unsupported file format.
 
-The integrated tests cover three cases:
-Case 1: Comparing two .json files;
-Case 2: Comparing two .yml files;
-Case 3: Comparing two .yaml files;
-Case 4: Comparing one supported file format and one unsupported file format.
-
-pytest-mock API:
-	mocker: Mock the inputs to the helper function, read_file(),
-	used inside generate_diff().
+The tests are integrated because generate_diff() is basically a composite
+function that wraps around a number of functions, which form a pipeline.
+These functions are:
+1) _read_file() => reads and parses config files of .json and .yml / .yaml types into Python dicts;
+2) build_diff() = > reads two Python dicts, compares them and generates a diff tree;
+3) format_stylish() => reads a diff tree and outputs a 'stylish' string representation of the differences;
+between the config files, which were were initially read by _read_file().
 """
 
 import pytest
 from gendiff.diff_logic import generate_diff
-from pytest_mock import MockerFixture
 from pathlib import Path
 from .helpers import _get_test_data_path, _read_test_file
 
 
-# UNIT TESTS
-# Case 1: Both files identical → output shows keys without - or +.
-def test_generate_diff_unchanged_key(mocker: MockerFixture) -> None:
-	# Arrange
-	file1 = {"host": "hexlet.io"}
-	file2 = {"host": "hexlet.io"}
-	expected_output = "{\n    host: hexlet.io\n}"
-
-	mock_read = mocker.patch("gendiff.diff_logic.read_file")
-	mock_read.side_effect = [file1, file2]
-
-        # Act
-	actual_output = generate_diff("file1_path", "file2_path")
-
-	# Assert
-	assert actual_output == expected_output
-
-
-# Case 2: Keys added only in second file → output shows keys with +.
-def test_generate_diff_add_key(mocker: MockerFixture) -> None:
-	# Arrange
-	file1 = {}
-	file2 = {"host": "hexlet.io"}
-	expected_output = "{\n  + host: hexlet.io\n}"
-
-	mock_read = mocker.patch("gendiff.diff_logic.read_file")
-	mock_read.side_effect = [file1, file2]
-
-	# Act
-	actual_output = generate_diff("file1_path", "file2_path")
-
-	# Assert
-	assert actual_output == expected_output
-
-
-# Case 3: Keys removed in second file → output shows keys with -.
-def test_generate_diff_remove_key(mocker: MockerFixture) -> None:
-	# Arrange
-	file1 = {"host": "hexlet.io"}
-	file2 = {}
-	expected_output = "{\n  - host: hexlet.io\n}"
-
-	mock_read = mocker.patch("gendiff.diff_logic.read_file")
-	mock_read.side_effect = [file1, file2]
-
-	# Act
-	actual_output = generate_diff("file1_path", "file2_path")
-
-	# Assert
-	assert actual_output == expected_output
-
-
-# Case 4: Keys updated (values differ) → output shows keys with - then +.
-def test_generate_diff_update_key(mocker: MockerFixture) -> None:
-	# Arrange
-	file1 = {"host": "hexlet.io"}
-	file2 = {"host": "hexlet.com"}
-	expected_output = "{\n  - host: hexlet.io\n  + host: hexlet.com\n}"
-
-	mock_read = mocker.patch("gendiff.diff_logic.read_file")
-	mock_read.side_effect = [file1, file2]
-
-	# Act
-	actual_output = generate_diff("file1_path", "file2_path")
-
-	# Assert
-	assert actual_output == expected_output
-
-
 # INTEGRATED TESTS
-# Case 1: Comparing two .json files
-def test_generate_diff_json() -> None:
+# Case 1: Comparing two flat .json files
+def test_generate_diff_flat_json() -> None:
 	# Arrange
 	file1 = _get_test_data_path("file1_flat.json")
 	file2 = _get_test_data_path("file2_flat.json")
@@ -111,8 +42,22 @@ def test_generate_diff_json() -> None:
 	assert actual_output == expected_output
 
 
-# Case 2: Comparing two .yml files
-def test_generate_diff_yml() -> None:
+# Case 2: Comparing two nested .json files
+def test_generate_diff_nest_json() -> None:
+	# Arrange
+	file1 = _get_test_data_path("file1_nest.json")
+	file2 = _get_test_data_path("file2_nest.json")
+	expected_output = _read_test_file("expected_stylish_nest.txt")
+
+	# Act
+	actual_output = generate_diff(file1, file2)
+
+	# Assert
+	assert actual_output == expected_output
+
+
+# Case 3: Comparing two flat .yml files
+def test_generate_diff_flat_yml() -> None:
 	# Arrange
 	file1 = _get_test_data_path("file1_flat.yml")
 	file2 = _get_test_data_path("file2_flat.yml")
@@ -125,8 +70,22 @@ def test_generate_diff_yml() -> None:
 	assert actual_output == expected_output
 
 
-# Case 3: Comparing two .yaml files
-def test_generate_diff_yaml() -> None:
+# Case 4: Comparing two nested .yml files
+def test_generate_diff_nest_yml() -> None:
+	# Arrange
+	file1 = _get_test_data_path("file1_nest.yml")
+	file2 = _get_test_data_path("file2_nest.yml")
+	expected_output = _read_test_file("expected_stylish_nest.txt")
+
+	# Act
+	actual_output = generate_diff(file1, file2)
+
+	# Assert
+	assert actual_output == expected_output
+
+
+# Case 5: Comparing two flat .yaml files
+def test_generate_diff_flat_yaml() -> None:
 	# Arrange
 	file1 = _get_test_data_path("file1_flat.yaml")
 	file2 = _get_test_data_path("file2_flat.yaml")
@@ -139,7 +98,21 @@ def test_generate_diff_yaml() -> None:
 	assert actual_output == expected_output
 
 
-# Case 4: Comparing one supported file format and one unsupported file format
+# Case 6: Comparing two nested .yaml files
+def test_generate_diff_nest_yaml() -> None:
+	# Arrange
+	file1 = _get_test_data_path("file1_nest.yaml")
+	file2 = _get_test_data_path("file2_nest.yaml")
+	expected_output = _read_test_file("expected_stylish_nest.txt")
+
+	# Act
+	actual_output = generate_diff(file1, file2)
+
+	# Assert
+	assert actual_output == expected_output
+
+
+# Case 7: Comparing one supported file format and one unsupported file format
 def test_generate_diff_unsupported_ext() -> None:
 	# Arrange
 	file1 = _get_test_data_path("file1_flat.json")
