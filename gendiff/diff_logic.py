@@ -1,55 +1,24 @@
 """ Difference Generator Module (diff_logic.py) for compring configuration files.
 
 This module contains the function generate_diff() that compares two structured
-configuration files and reports their differences in a user-selected
+configuration files and outputs their differences in a user-selected
 format.
 
-It also contains helper functions used by generate_diff().
+Baically, generate_diff() is a composite function that wraps around three functions,
+which form a pipeline:
+1) _read_file() => in parser.py -> reads two config files of .json or .yml / .yaml format and parses them into Python dictionaries;
+2) build_diff() => in diff_builder.py -> compares two input dicts and generates a diff tree - a list of dictionary nodes;
+3) format_stylish() => in formatter_stylish.py -> generates a user-friendly 'sytlish' string representation of the differences
+between the two config files initially read by _read_file().
 """
 
 
-from typing import Any
-
+from .diff_builder import build_diff
+from .formatters.formatter_stylish import format_stylish
 from .parser import read_file
 
 
-def _get_sorted_keys(dict1: dict, dict2: dict) -> list:
-	"""
-	Extract dictionary keys and return a sorted list of unique keys.
-
-	Args:
-		dict1: dictionary 1
-		dict2: dictionary 2
-	Returns:
-		sorted_keys: a sorted list of the unique keys from dict1 and dict2
-	"""
-	sorted_keys = sorted(list(dict1.keys() | dict2.keys()))
-	return sorted_keys
-
-
-def _format_value(value: Any) -> str:
-	"""
-	Determine the data type of input values and convert them to strings.
-
-	Args:
-		value: Any Python data type object.
-	Returns:
-		string: All input values are converted to strings.
-	"""
-	match value:
-		case bool():
-			return str(value).lower()
-		case int():
-			return str(value)
-		case float():
-			return str(value)
-		case None:
-			return "null"
-		case _:
-			return value
-
-
-def generate_diff(file_path_1: str, file_path_2: str) -> str:
+def generate_diff(file_path_1: str, file_path_2: str, format_name='stylish') -> str:
 	"""
 	Read two files, compare their contents and return a tree-like output.
 
@@ -61,27 +30,14 @@ def generate_diff(file_path_1: str, file_path_2: str) -> str:
 		tree-like output (str): Changes are indicated with - (removed), + (added), and "  " (unchanged).
 
 	"""
-
+	# Read the input files
 	dict1 = read_file(file_path_1)
 	dict2 = read_file(file_path_2)
 
-	sorted_keys = _get_sorted_keys(dict1, dict2)
+	# Build a comparison internal representation (IR)
+	diff_tree_ir = build_diff(dict1, dict2)
 
-	output_str = ""
+	# Format the output string
+	diff_str = format_stylish(diff_tree_ir)
 
-	for key in sorted_keys:
-
-		value1 = dict1.get(key)
-		value2 = dict2.get(key)
-
-		if key in dict1 and key in dict2:
-			if dict1.get(key) != dict2.get(key):
-				output_str += f"  - {key}: {_format_value(value1)}\n  + {key}: {_format_value(value2)}\n"
-			else:
-				output_str += f"    {key}: {_format_value(value1)}\n"
-		elif key in dict1:
-			output_str += f"  - {key}: {_format_value(value1)}\n"
-		elif key in dict2:
-			output_str += f"  + {key}: {_format_value(value2)}\n"
-
-	return f"{{\n{output_str}}}"
+	return diff_str
