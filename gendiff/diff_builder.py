@@ -61,7 +61,7 @@ def build_diff(dict1: dict, dict2: dict) -> list:
 			node['new_value'] = value2
 			node['children'] = None
 
-		elif key in dict1 and key in dict2:
+		else:
 			if isinstance(value1, dict) and isinstance(value2, dict):
 				node['key'] = key
 				node['status'] = 'nested'
