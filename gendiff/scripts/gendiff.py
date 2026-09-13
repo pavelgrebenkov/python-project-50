@@ -41,7 +41,7 @@ def main():
 
 	except ValueError as error:
 		print(f"Error: {error}", file=sys.stderr)
-		exit(1)
+		sys.exit(1)
 
 
 if __name__ == "__main__":
