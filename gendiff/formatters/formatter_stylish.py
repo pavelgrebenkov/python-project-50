@@ -9,10 +9,10 @@ It also contains the helper function _format_value().
 from typing import Any
 
 
-def _format_value(value: Any, replacer: str, spaces_count: int, level: int) -> Any:
+def _format_value(value: Any, replacer: str, spaces_count: int, level: int) -> str:
 	"""
 	1) If the input value is a non-empty Python  dictionary, unpack it;
-	2) If the input Python value is primitive, determine its type and convert to a strings.
+	2) If the input Python value is primitive, determine its type and convert to a string.
 
         Args:
                 value: Any Python data type object;
@@ -84,7 +84,7 @@ def format_stylish(diff_tree_node: list, replacer: str = ' ', spaces_count: int 
 	for node in diff_tree_node:
 		status = node['status']
 		if status == "unchanged":
-			output_str += f"{full_indent}{node['key']}: {_format_value(node['old_value'], None, None, None)}\n"
+			output_str += f"{full_indent}{node['key']}: {_format_value(node['old_value'], replacer, spaces_count, level)}\n"
 		elif status == "removed":
 			output_str += f"{offset_indent}- {node['key']}: {_format_value(node['old_value'], replacer, spaces_count, level)}\n"
 		elif status == "added":
