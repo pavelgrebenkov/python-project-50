@@ -21,11 +21,11 @@ the following possible situations:
 """
 
 
-from gendiff.diff_builder import build_diff
-from pathlib import Path
-from .helpers import _get_test_data_path, _read_test_file
-import pytest
 import ast
+
+from gendiff.diff_builder import build_diff
+
+from .helpers import _get_test_data_path, _read_test_file
 
 
 # I. FLAT DICTIONARIES:
@@ -67,7 +67,7 @@ def test_build_diff_flat_status_added():
 	# Act
 	actual_output = build_diff(dict1, dict2)
 
-    	# Assert
+	# Assert
 	assert actual_output == expected_output
 
 
@@ -113,8 +113,6 @@ def test_build_diff_flat_overall():
 	assert actual_output == expected_output
 
 
-
-
 # II. NESTED DICTIONAREIES:
 # Case 1: nested => empty dictionaries
 def test_build_diff_empty_nest_dict():
@@ -127,7 +125,7 @@ def test_build_diff_empty_nest_dict():
 					'status': 'nested',
 					'old_value': None,
 					'new_value': None,
-					'children': [] # Empty list
+					'children': []  # Empty list
 				}
 			]
 
