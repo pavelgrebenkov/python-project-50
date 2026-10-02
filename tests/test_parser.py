@@ -15,11 +15,14 @@ Case 7: The function raises a ValueError in case of an unsupported file format.
 """
 
 
-from gendiff.parser import read_file
-from pathlib import Path
-from .helpers import _get_test_data_path, _read_test_file
-import pytest
 import ast
+from pathlib import Path
+
+import pytest
+
+from gendiff.parser import read_file
+
+from .helpers import _get_test_data_path, _read_test_file
 
 
 # Case 1: flat .json files
@@ -114,7 +117,7 @@ def test_read_file_unsupported_ext():
 	expected_output = f"Unsupported file format {file_ext}. Only JSON and YAML allowed."
 
 	# Act
-	with pytest.raises(ValueError, match = expected_output):
+	with pytest.raises(ValueError, match=expected_output):
 		actual_output = read_file(unsupported_input_file)
 		# Assert
 		assert actual_output == expected_output
