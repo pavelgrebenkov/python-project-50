@@ -3,8 +3,8 @@
 This module validates generate_diff(), which compares two structured
 configuration files and reports their differences in a user-selected format.
 
-The integrated tests cover 8 cases, each of which is checked against two
-user-selected formats - stylish (default) and plain:
+The integrated tests cover 8 cases, each of which is checked against three
+user-selected formats - stylish (default), plain and json:
 Case 1: Comparing two flat .json files;
 Case 2: Comparing two nested .json files;
 Case 3: Comparing two flat .yml files;
@@ -17,24 +17,26 @@ Case 8: Unsupported file format.
 The tests are integrated because generate_diff() is basically a composite
 function that wraps around a number of functions, which form a pipeline.
 These functions are:
-1) read_file() => reads and parses config files of .json and .yml / .yaml types into Python dicts;
-2) build_diff() = > reads two Python dicts, compares them and generates a diff tree;
-3) format_stylish() => reads a diff tree and outputs a 'stylish' string representation of the differences;
-4) format_plain() => reads a diff tree and output a 'plain' string representation of the differences.
+1) read_file() => in parser.py -> reads two config files of .json or .yml / .yaml format and parses them into Python dictionaries;
+2) build_diff() => in diff_builder.py -> compares two input dicts and generates a diff tree - a list of dictionary nodes;
+3) format_stylish() => in formatter_stylish.py -> generates a user-friendly 'stylish' string representation of the differences;
+4) format_plain() => in formatter_plain.py -> generates a user-friendly 'plain' string representation of the differences;
+5) format_json() => in formatter_json.py -> generates a JSON string representation of the differences.
 
-NOTE: format_stylish(), format_plain() are selected by the user, with the former being the default option.
+NOTE: format_stylish(), format_plain() and format_json() are selected by the user, with the first one being the default option.
 """
 
-import pytest
 import re
-from gendiff.diff_logic import generate_diff
-from pathlib import Path
-from .helpers import _get_test_data_path, _read_test_file
 
+import pytest
+
+from gendiff.diff_logic import generate_diff
+
+from .helpers import _get_test_data_path, _read_test_file
 
 # INTEGRATED TESTS
 # Formatter type is a parameter passed to each function
-parametrize_output_formats = pytest.mark.parametrize("format_name", ["stylish", "plain"])
+parametrize_output_formats = pytest.mark.parametrize("format_name", ["stylish", "plain", "json"])
 
 
 # Case 1: Comparing two flat .json files
@@ -139,11 +141,11 @@ def test_generate_diff_unsupported_formatter() -> None:
 	file1 = _get_test_data_path("file1_flat.json")
 	file2 = _get_test_data_path("file2_flat.json")
 
-	expected_output = "Unknown formatter: json. Available formatters: stylish, plain."
+	expected_output = "Unknown formatter: xml. Available formatters: stylish, plain, json."
 
 	# Act
-	with pytest.raises(ValueError, match = re.escape(expected_output)):
-		generate_diff(file1, file2, format_name = "json")
+	with pytest.raises(ValueError, match=re.escape(expected_output)):
+		generate_diff(file1, file2, format_name="xml")
 
 
 # Case 8: Comparing one supported file format and one unsupported file format
@@ -152,6 +154,6 @@ def test_generate_diff_unsupported_ext() -> None:
 	file1 = _get_test_data_path("file1_flat.json")
 	file2 = _get_test_data_path("unsupported_file_type.txt")
 
-	# Act & Assert
+	# Act
 	with pytest.raises(ValueError, match="Unsupported file format"):
 		generate_diff(file1, file2)
