@@ -9,8 +9,10 @@ according to the follwing rules:
 - For each node, the line starts with either - (removed), + (added), or (unchanged/nested header);
 - For unchanged primitive values: key: value (4 spaces).
 - For added/removed primitive values: + key: value or - key: value (2 spaces, sign, space).
-- For updated primitive values: two lines - first removed, followed by added - with the top-level output starting with { on its own line and ends with } on its own line;
-- For 'nested' nodes, the line is key: { (with 4 spaces, no sign), then the children are indented further, and the closing } is on its own line with the same indentation as the opening line;
+- For updated primitive values: two lines - first removed, followed by added - with the top-level output starting with
+{ on its own line and ends with } on its own line;
+- For 'nested' nodes, the line is key: { (with 4 spaces, no sign), then the children are indented further, and the closing } 
+is on its own line with the same indentation as the opening line;
 - EXAMPLE:
   {
       common: {
@@ -30,14 +32,14 @@ The tests cover 12 cases - 6 for each type of IR, flat and nested. The tests cov
 6. mixed (2. - 5.)
 """
 
-from gendiff.formatters.formatter_stylish import format_stylish
-from pathlib import Path
-from .helpers import _get_test_data_path, _read_test_file
-import pytest
 import ast
 
+from gendiff.formatters.formatter_stylish import format_stylish
 
-#. FLAT IRs
+from .helpers import _get_test_data_path, _read_test_file
+
+
+# . FLAT IRs
 # Case 1: flat => empty node
 def test_format_stylish_flat_empty_node():
     # Arrange:
@@ -62,7 +64,6 @@ def test_format_stylish_flat_status_unchanged():
                         "}"
                     )
 
-
     # Act
     actual_output = format_stylish(node)
 
@@ -80,7 +81,6 @@ def test_format_stylish_flat_status_removed():
                         "}"
                     )
 
-
     # Act
     actual_output = format_stylish(node)
 
@@ -97,7 +97,6 @@ def test_format_stylish_flat_status_added():
                         "  + host: hexlet.io\n"
                         "}"
                     )
-
 
     # Act
     actual_output = format_stylish(node)
@@ -117,7 +116,6 @@ def test_format_stylish_flat_status_updated():
                         "}"
                     )
 
-
     # Act
     actual_output = format_stylish(node)
 
@@ -130,7 +128,6 @@ def test_format_stylish_flat_overall():
     # Arrange:
     node = ast.literal_eval(_read_test_file(_get_test_data_path("expected_ir_flat.txt")))
     expected_output = _read_test_file(_get_test_data_path("expected_stylish_flat.txt"))
-
 
     # Act
     actual_output = format_stylish(node)
@@ -188,7 +185,6 @@ def test_format_stylish_nest_status_unchanged():
                         "}"
                     )
 
-
     # Act
     actual_output = format_stylish(node)
 
@@ -217,7 +213,6 @@ def test_format_stylish_nest_status_removed():
                         "}"
                     )
 
-
     # Act
     actual_output = format_stylish(node)
 
@@ -245,7 +240,6 @@ def test_format_stylish_nest_status_added():
                         "    }\n"
                         "}"
                     )
-
 
     # Act
     actual_output = format_stylish(node)
@@ -276,7 +270,6 @@ def test_format_stylish_nest_status_updated():
                         "}"
                     )
 
-
     # Act
     actual_output = format_stylish(node)
 
@@ -289,7 +282,6 @@ def test_format_stylish_nest_overall():
     # Arrange:
     node = ast.literal_eval(_read_test_file(_get_test_data_path("expected_ir_nest.txt")))
     expected_output = _read_test_file(_get_test_data_path("expected_stylish_nest.txt"))
-
 
     # Act
     actual_output = format_stylish(node)
