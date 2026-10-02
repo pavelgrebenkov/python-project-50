@@ -25,11 +25,11 @@ The tests cover 12 cases - 6 for each type of IR, flat and nested. The tests cov
 6. mixed (2. - 5.)
 """
 
-from gendiff.formatters.formatter_plain import format_plain
-from pathlib import Path
-from .helpers import _get_test_data_path, _read_test_file
-import pytest
 import ast
+
+from gendiff.formatters.formatter_plain import format_plain
+
+from .helpers import _get_test_data_path, _read_test_file
 
 
 # FLAT IRs
