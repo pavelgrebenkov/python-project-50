@@ -34,7 +34,7 @@ from .helpers import _get_test_data_path, _read_test_file
 
 # FLAT IRs
 # Case 1: flat => empty node
-def test_format_plain_flat_empty_node():
+def test_format_plain_flat_empty_node() -> None:
     # Arrange:
     node = []
     expected_output = ""
@@ -47,7 +47,7 @@ def test_format_plain_flat_empty_node():
 
 
 # Case 2: flat => status: unchanged
-def test_format_plain_flat_status_unchanged():
+def test_format_plain_flat_status_unchanged() -> None:
     # Arrange:
     node = [{'key': 'host', 'status': 'unchanged', 'old_value': 'hexlet.io', 'new_value': 'hexlet.io', 'children': None}]
     expected_output = ""
@@ -60,7 +60,7 @@ def test_format_plain_flat_status_unchanged():
 
 
 # Case 3: flat => status: removed
-def test_format_plain_flat_status_removed():
+def test_format_plain_flat_status_removed() -> None:
     # Arrange:
     node = [{'key': 'host', 'status': 'removed', 'old_value': 'hexlet.io', 'new_value': None, 'children': None}]
     expected_output = "Property 'host' was removed"
@@ -73,7 +73,7 @@ def test_format_plain_flat_status_removed():
 
 
 # Case 4: flat => status added
-def test_format_plain_flat_status_added():
+def test_format_plain_flat_status_added() -> None:
     # Arrange:
     node = [{'key': 'host', 'status': 'added', 'old_value': None, 'new_value': 'hexlet.io', 'children': None}]
     expected_output = "Property 'host' was added with value: 'hexlet.io'"
@@ -86,7 +86,7 @@ def test_format_plain_flat_status_added():
 
 
 # Case 5: flat => updated node
-def test_format_plain_flat_status_updated():
+def test_format_plain_flat_status_updated() -> None:
     # Arrange:
     node = [{'key': 'host', 'status': 'updated', 'old_value': 'hexlet.io', 'new_value': 'hexlet.com', 'children': None}]
     expected_output = "Property 'host' was updated. From 'hexlet.io' to 'hexlet.com'"
@@ -99,7 +99,7 @@ def test_format_plain_flat_status_updated():
 
 
 # Case 6: flat => integrated
-def test_format_plain_flat_overall():
+def test_format_plain_flat_overall() -> None:
     # Arrange:
     node = ast.literal_eval(_read_test_file(_get_test_data_path("expected_ir_flat.txt")))
     expected_output = _read_test_file(_get_test_data_path("expected_plain_flat.txt"))
@@ -113,7 +113,7 @@ def test_format_plain_flat_overall():
 
 # II. NESTED IRs
 # Case 1: nested => Empty node
-def test_format_plain_nest_empty_node():
+def test_format_plain_nest_empty_node() -> None:
     node = [
             {
                 'key': 'common',
@@ -134,7 +134,7 @@ def test_format_plain_nest_empty_node():
 
 
 # Case 2: nested => status: unchanged
-def test_format_plain_nest_status_unchanged():
+def test_format_plain_nest_status_unchanged() -> None:
     # Arrange:
     node = [
             {
@@ -155,7 +155,7 @@ def test_format_plain_nest_status_unchanged():
 
 
 # Case 3: nested => status: removed
-def test_format_plain_nest_status_removed():
+def test_format_plain_nest_status_removed() -> None:
     # Arrange:
     node = [
             {
@@ -176,7 +176,7 @@ def test_format_plain_nest_status_removed():
 
 
 # Case 4: nest => Added node
-def test_format_plain_nest_status_added():
+def test_format_plain_nest_status_added() -> None:
     # Arrange:
     node = [
             {
@@ -197,7 +197,7 @@ def test_format_plain_nest_status_added():
 
 
 # Case 5: nest => Updated node
-def test_format_plain_nest_status_updated():
+def test_format_plain_nest_status_updated() -> None:
     # Arrange:
     node = [
             {
@@ -218,7 +218,7 @@ def test_format_plain_nest_status_updated():
 
 
 # Case 6: nest => Integrated
-def test_format_plain_nest_overall():
+def test_format_plain_nest_overall() -> None:
     # Arrange:
     node = ast.literal_eval(_read_test_file(_get_test_data_path("expected_ir_nest.txt")))
     expected_output = _read_test_file(_get_test_data_path("expected_plain_nest.txt"))

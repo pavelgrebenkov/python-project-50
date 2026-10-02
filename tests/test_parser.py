@@ -26,7 +26,7 @@ from .helpers import _get_test_data_path, _read_test_file
 
 
 # Case 1: flat .json files
-def test_read_file_flat_json():
+def test_read_file_flat_json() -> None:
 	# Arrange
 	json_input_file = _get_test_data_path("file1_flat.json")
 	expected_output_file = _get_test_data_path("expected_dict_output_flat1.txt")
@@ -40,7 +40,7 @@ def test_read_file_flat_json():
 
 
 # Case 2: nested .json files
-def test_read_file_nest_json():
+def test_read_file_nest_json() -> None:
 	# Arrange
 	json_input_file = _get_test_data_path("file1_nest.json")
 	expected_output_file = _get_test_data_path("expected_dict_output_nest1.txt")
@@ -54,7 +54,7 @@ def test_read_file_nest_json():
 
 
 # Case 3: flat .yml files
-def test_read_file_flat_yml():
+def test_read_file_flat_yml() -> None:
 	# Arrange
 	yml_input_file = _get_test_data_path("file1_flat.yml")
 	expected_output_file = _get_test_data_path("expected_dict_output_flat1.txt")
@@ -68,7 +68,7 @@ def test_read_file_flat_yml():
 
 
 # Case 4: nested .yml files
-def test_read_file_nest_yml():
+def test_read_file_nest_yml() -> None:
 	# Arrange
 	yml_input_file = _get_test_data_path("file1_nest.yml")
 	expected_output_file = _get_test_data_path("expected_dict_output_nest1.txt")
@@ -82,7 +82,7 @@ def test_read_file_nest_yml():
 
 
 # Case 5: flat .yaml files
-def test_read_file_flat_yaml():
+def test_read_file_flat_yaml() -> None:
 	# Arrange
 	yaml_input_file = _get_test_data_path("file1_flat.yaml")
 	expected_output_file = _get_test_data_path("expected_dict_output_flat1.txt")
@@ -96,7 +96,7 @@ def test_read_file_flat_yaml():
 
 
 # Case 6: nested .yaml files
-def test_read_file_nest_yaml():
+def test_read_file_nest_yaml() -> None:
 	# Arrange
 	yaml_input_file = _get_test_data_path("file1_nest.yaml")
 	expected_output_file = _get_test_data_path("expected_dict_output_nest1.txt")
@@ -110,7 +110,7 @@ def test_read_file_nest_yaml():
 
 
 # Case 7: Unsupported files
-def test_read_file_unsupported_ext():
+def test_read_file_unsupported_ext() -> None:
 	# Arrange
 	unsupported_input_file = _get_test_data_path("unsupported_file_type.txt")
 	file_ext = Path("unsupported_file_type.txt").suffix.lower()

@@ -30,7 +30,7 @@ from .helpers import _get_test_data_path, _read_test_file
 
 # I. FLAT DICTIONARIES:
 # Case 1: flat => empty dictionaries
-def test_build_diff_empty_flat_dict():
+def test_build_diff_empty_flat_dict() -> None:
 	# Arrange:
 	dict1 = {}
 	dict2 = {}
@@ -44,7 +44,7 @@ def test_build_diff_empty_flat_dict():
 
 
 # Case 2: flat => status: unchanged
-def test_build_diff_flat_status_unchanged():
+def test_build_diff_flat_status_unchanged() -> None:
 	# Arrange:
 	dict1 = {"host": "hexlet.io"}
 	dict2 = {"host": "hexlet.io"}
@@ -58,7 +58,7 @@ def test_build_diff_flat_status_unchanged():
 
 
 # Case 3: flat => status: added
-def test_build_diff_flat_status_added():
+def test_build_diff_flat_status_added() -> None:
 	# Arrange:
 	dict1 = {}
 	dict2 = {"host": "hexlet.io"}
@@ -72,7 +72,7 @@ def test_build_diff_flat_status_added():
 
 
 # Case 4: flat => status: removed
-def test_build_diff_flat_status_removed():
+def test_build_diff_flat_status_removed() -> None:
 	# Arrange:
 	dict1 = {"host": "hexlet.io"}
 	dict2 = {}
@@ -86,7 +86,7 @@ def test_build_diff_flat_status_removed():
 
 
 # Case 5: flat => status: updated
-def test_build_diff_flat_status_updated():
+def test_build_diff_flat_status_updated() -> None:
 	# Arrange:
 	dict1 = {"host": "hexlet.io"}
 	dict2 = {"host": "hexlet.com"}
@@ -100,7 +100,7 @@ def test_build_diff_flat_status_updated():
 
 
 # Case 6: flat => integrated (cases 2 - 5)
-def test_build_diff_flat_overall():
+def test_build_diff_flat_overall() -> None:
 	# Arrange:
 	dict1 = ast.literal_eval(_read_test_file(_get_test_data_path("expected_dict_output_flat1.txt")))
 	dict2 = ast.literal_eval(_read_test_file(_get_test_data_path("expected_dict_output_flat2.txt")))
@@ -115,7 +115,7 @@ def test_build_diff_flat_overall():
 
 # II. NESTED DICTIONAREIES:
 # Case 1: nested => empty dictionaries
-def test_build_diff_empty_nest_dict():
+def test_build_diff_empty_nest_dict() -> None:
 	# Arrange
 	dict1 = {"common": {}}
 	dict2 = {"common": {}}
@@ -137,7 +137,7 @@ def test_build_diff_empty_nest_dict():
 
 
 # Case 2: nested => status: unchanged
-def test_build_diff_nest_status_unchanged():
+def test_build_diff_nest_status_unchanged() -> None:
 	# Arrange:
 	dict1 = {"common": {"setting1": "Value 1"}}
 	dict2 = {"common": {"setting1": "Value 1"}}
@@ -159,7 +159,7 @@ def test_build_diff_nest_status_unchanged():
 
 
 # Case 3: nested => status: added
-def test_build_diff_nest_status_added():
+def test_build_diff_nest_status_added() -> None:
 	# Arrange:
 	dict1 = {"common": {}}
 	dict2 = {"common": {"setting1": "Value 1"}}
@@ -181,7 +181,7 @@ def test_build_diff_nest_status_added():
 
 
 # Case 4: nested => status: removed
-def test_build_diff_nest_status_removed():
+def test_build_diff_nest_status_removed() -> None:
 	# Arrange:
 	dict1 = {"common": {"setting1": "Value 1"}}
 	dict2 = {"common": {}}
@@ -203,7 +203,7 @@ def test_build_diff_nest_status_removed():
 
 
 # Case 5: nested => status: updated
-def test_build_diff_nest_status_updated():
+def test_build_diff_nest_status_updated() -> None:
 	# Arrange:
 	dict1 = {"common": {"setting1": "Value 1"}}
 	dict2 = {"common": {"setting1": "Value 2"}}
@@ -225,7 +225,7 @@ def test_build_diff_nest_status_updated():
 
 
 # Case 6: nested => all of the above (integrated)
-def test_build_diff_nest_overall():
+def test_build_diff_nest_overall() -> None:
 	# Arrange:
 	dict1 = ast.literal_eval(_read_test_file(_get_test_data_path("expected_dict_output_nest1.txt")))
 	dict2 = ast.literal_eval(_read_test_file(_get_test_data_path("expected_dict_output_nest2.txt")))
