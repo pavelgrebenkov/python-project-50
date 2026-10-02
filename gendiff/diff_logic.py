@@ -4,16 +4,20 @@ This module contains the function generate_diff() that compares two structured
 configuration files and outputs their differences in a user-selected
 format.
 
-Basically, generate_diff() is a composite function that wraps around four functions,
+Basically, generate_diff() is a composite function that wraps around five functions,
 which form a pipeline:
 1) read_file() => in parser.py -> reads two config files of .json or .yml / .yaml format and parses them into Python dictionaries;
 2) build_diff() => in diff_builder.py -> compares two input dicts and generates a diff tree - a list of dictionary nodes;
 3) format_stylish() => in formatter_stylish.py -> generates a user-friendly 'stylish' string representation of the differences;
-4) format_plain() => in formatter_plain.py -> generates a user-friendly 'plain' string representation of the differences.
+4) format_plain() => in formatter_plain.py -> generates a user-friendly 'plain' string representation of the differences;
+5) format_json() => in formatter_json.py -> generates a JSON string representation of the differences.
+
+NOTE: format_stylish(), format_plain(), format_json() are selected by the user, with the first one being the default option.
 """
 
 
 from .diff_builder import build_diff
+from .formatters.formatter_json import format_json
 from .formatters.formatter_plain import format_plain
 from .formatters.formatter_stylish import format_stylish
 from .parser import read_file
@@ -30,10 +34,11 @@ def generate_diff(file_path_1: str, file_path_2: str, format_name='stylish') -> 
 
 	Returns:
 		tree-like output (str): Changes are indicated with - (removed), + (added), and "  " (unchanged).
-		a flat list of sentences (str): each sentence describes a single changed property.
+		a flat list of sentences (str): Each sentence describes a single changed property.
+		a JSONE string(str): a serialized representation of an diff tree
 	"""
 	# Format type mapper
-	formatters = {"stylish": format_stylish, "plain": format_plain}
+	formatters = {"stylish": format_stylish, "plain": format_plain, "json": format_json}
 
 	# Allowed formats
 	available_formats = ", ".join(formatters.keys())
