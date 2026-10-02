@@ -16,10 +16,10 @@ update:
 
 # Lint => code quality
 lint:
-	uv run ruff check gendiff
+	uv run ruff check .
 
 lint-fix:
-	uv run ruff check --fix gendiff
+	uv run ruff check --fix .
 
 
 # Pytest => code functionality
