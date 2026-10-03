@@ -47,6 +47,19 @@ A command-line tool that compares two structured configuration files and reports
 - Plain: A flat list of sentences in English (e.g., "Property 'key' was added with value: ..."). Only show keys that have changed (no unchanged lines). Use dot notation for nested paths (e.g., "group1.baz").
 - JSON: A structured JSON array of difference objects, each containing at least type, key (or path), old value (if applicable), and new value (if applicable). Machine-readable.
 
+### Requirements:
+<ul>
+  <li><a href="https://www.python.org/downloads/">Python 3.10</a> or higher</li>
+  <li><a href=https://https://docs.astral.sh/uv/">uv</a></li>
+</ul>
+
+### Installation:
+<ul>
+  <li>To install the package type this command in the terminal:</li>
+  <li><em>uv tool install git+<span>https://</span>github.com/pavelgrebenkov/python-project-49.git@refactor/project-restructure</em></li>
+  <li>You can find all the information you need on how to install <em>uv</em><a href="https://docs.astral.sh/uv/getting-started/installation/"> here</a>.</li>
+</ul>
+
 ### Video demonstrations:
 To see how to install and uninstall the application, and how to use its various features, watch the demo videos below.
 - [Installation/Uninstallation (with uv)](https://asciinema.org/a/1267381)
