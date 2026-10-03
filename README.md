@@ -50,7 +50,7 @@ A command-line tool that compares two structured configuration files and reports
 ### Requirements:
 <ul>
   <li><a href="https://www.python.org/downloads/">Python 3.10</a> or higher</li>
-  <li><a href=https://https://docs.astral.sh/uv/">uv</a></li>
+  <li><a href=https://docs.astral.sh/uv/">uv</a></li>
 </ul>
 
 ### Installation:
