@@ -50,8 +50,8 @@ A command-line tool that compares two structured configuration files and reports
 ### Video demonstrations:
 To see how to install and uninstall the application, and how to use its various features, watch the demo videos below.
 
-- [Installation/Uninstallation (with uv)](https://asciinema.org/a/1267381 target="_blank")
-- [Parsing flat/nested files - stylish format](https://asciinema.org/a/6KeV2mCSoin3aAdi target="_blank")
-- [Parsing flat/nested files - plain format](https://asciinema.org/a/3i6Z6C4gmsZ7TGar target="_blank")
-- [Parsing flat/nested files - json format](https://asciinema.org/a/v8mQFReGeWGhxYUf target="_blank")
+- [Installation/Uninstallation (with uv)](https://asciinema.org/a/1267381)
+- [Parsing flat/nested files - stylish format](https://asciinema.org/a/6KeV2mCSoin3aAdi)
+- [Parsing flat/nested files - plain format](https://asciinema.org/a/3i6Z6C4gmsZ7TGar)
+- [Parsing flat/nested files - json format](https://asciinema.org/a/v8mQFReGeWGhxYUf)
 
